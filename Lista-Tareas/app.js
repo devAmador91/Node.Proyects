@@ -13,7 +13,7 @@ const main = async () => {
              const desc = await leerInput('Descripcion:');
              tareas.crearTarea(desc);   
              break;
-        case 2: console.log(tareas._listado); break;
+        case 2: console.log(tareas.listaArr); break;
 
     }
 
