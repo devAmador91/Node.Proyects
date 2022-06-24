@@ -30,10 +30,24 @@ const main = async () => {
         tareas.listar();
         break;
       case 3:
-        console.log(tareas.listarEstado(true));
+        tareas.listarEstado(true).forEach((t, i) => {
+          const { descripcion, completado } = t;
+          console.log(
+            `${String(i + 1).green}${".".green} ${descripcion} :: ${
+              completado.green
+            }`
+          );
+        });
         break;
       case 4:
-        console.log(tareas.listarEstado(false));
+        tareas.listarEstado(false).forEach((t, i) => {
+            const { descripcion } = t;
+            console.log(
+              `${String(i + 1).green}${".".green} ${descripcion} :: ${
+                "Pendiente".red
+              }`
+            );
+          });
         break;
       case 5:
         const tareasPendientes = tareas.listarEstado(false);
