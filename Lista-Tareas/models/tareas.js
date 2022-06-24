@@ -52,16 +52,19 @@ class Tareas {
 
   completarTareas = (id) => {
     id.forEach((id)=>{
-        this._listado[id].completado = "Completado";
+        this._listado[id].completado = `Completado -> ${new Date().toISOString()}`;
     console.log("Estado de Tarea completado".green);
     })
     
   };
 
   eliminarTarea = (id) =>{
+    id.forEach((id)=>{
     delete this._listado[id];
     console.log("Tarea eliminada".green);
-  }
+  })
+}
+
 }
 
 module.exports = Tareas;
