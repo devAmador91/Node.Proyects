@@ -51,8 +51,11 @@ class Tareas {
   };
 
   completarTareas = (id) => {
-    this._listado[id].completado = "Completado";
+    id.forEach((id)=>{
+        this._listado[id].completado = "Completado";
     console.log("Estado de Tarea completado".green);
+    })
+    
   };
 
   eliminarTarea = (id) =>{
