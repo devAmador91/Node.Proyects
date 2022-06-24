@@ -45,41 +45,85 @@ const inquiererMenu = async () => {
   console.log("Seleccione una opción:".cyan);
   console.log("======================\n".green);
 
-  const {option} = await inquirer.prompt(preguntasMenu);
+  const { option } = await inquirer.prompt(preguntasMenu);
   return option;
 };
 
 const preguntaPausa = [
   {
     type: "input",
-    name: 'enter',
-    message:`Presione ${`Enter`.green} para continuar...`
+    name: "enter",
+    message: `Presione ${`Enter`.green} para continuar...`,
   },
 ];
 
 const pausa = async () => {
-    console.log('\n')
+  console.log("\n");
   await inquirer.prompt(preguntaPausa);
 };
 
-const leerInput = async (message) =>{
-    const preguntas = [{
-        type: 'input',
-        name: 'desc',
-        message,
-        validate(value){
-            if (value.length === 0){
-                return "Por favor ingrese un valor";
-            }
-            return true;
+const leerInput = async (message) => {
+  const preguntas = [
+    {
+      type: "input",
+      name: "desc",
+      message,
+      validate(value) {
+        if (value.length === 0) {
+          return "Por favor ingrese un valor";
         }
-    }];
-    const {desc} = await inquirer.prompt(preguntas);
-    return desc;
+        return true;
+      },
+    },
+  ];
+  const { desc } = await inquirer.prompt(preguntas);
+  return desc;
+};
+
+const opcionTareas = async (tareas) => {
+  const preguntas = [
+    {
+      type: "checkbox",
+      name: "tarea",
+      message: "Escoja una tarea y seleccione pendiente o completada",
+      choices: tareas.map((t) => {
+        const { descripcion, id } = t;
+        return {
+          value: id,
+          name: descripcion,
+        };
+      }),
+    },
+  ];
+
+  const { tarea } = await inquirer.prompt(preguntas);
+  return tarea;
+};
+
+const listarTareas = async(tareas) =>{
+    const preguntas = [
+        {
+          type: "checkbox",
+          name: "tarea",
+          message: "Escoja una tarea a eliminar",
+          choices: tareas.map((t) => {
+            const { descripcion, id } = t;
+            return {
+              value: id,
+              name: descripcion,
+            };
+          }),
+        },
+      ];
+    
+      const { tarea } = await inquirer.prompt(preguntas);
+      return tarea;
 }
 
 module.exports = {
   inquiererMenu,
   pausa,
-  leerInput
+  leerInput,
+  opcionTareas,
+  listarTareas
 };
