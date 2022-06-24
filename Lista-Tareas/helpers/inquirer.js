@@ -62,12 +62,12 @@ const pausa = async () => {
   await inquirer.prompt(preguntaPausa);
 };
 
-const leerInput = async (message) => {
+const leerInput = async () => {
   const preguntas = [
     {
       type: "input",
       name: "desc",
-      message,
+      message: "Descripción",
       validate(value) {
         if (value.length === 0) {
           return "Por favor ingrese un valor";
@@ -120,10 +120,33 @@ const listarTareas = async(tareas) =>{
       return tarea;
 }
 
+const preguntaEliminar = [
+    {
+      type: "input",
+      name: "response",
+      message: `Presione ${`[s]`.green} para continuar o ${`[n]`.green} para cancelar`,
+      validate(value) {
+        if (value === "s" || value === "n") {
+          return true
+        }
+        return "Por favor ingrese [s] o [n]";
+      },
+    },
+  ];
+  
+  const pausaEliminar = async () => {
+    console.log("\n");
+   const {response} = await inquirer.prompt(preguntaEliminar);
+   return response;
+  };
+
+
+
 module.exports = {
   inquiererMenu,
   pausa,
   leerInput,
   opcionTareas,
-  listarTareas
+  listarTareas,
+  pausaEliminar
 };

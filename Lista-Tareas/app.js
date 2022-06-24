@@ -5,6 +5,7 @@ const {
   leerInput,
   opcionTareas,
   listarTareas,
+  pausaEliminar
 } = require("./helpers/inquirer");
 const Tareas = require("./models/tareas");
 const { guardarData, leerData } = require("./helpers/guardarArchivo");
@@ -23,7 +24,7 @@ const main = async () => {
 
     switch (opt) {
       case 1:
-        const desc = await leerInput("Descripcion:");
+        const desc = await leerInput();
         tareas.crearTarea(desc);
         break;
       case 2:
@@ -57,7 +58,10 @@ const main = async () => {
       case 6:
         const listaTareas = tareas.listaArr;
         const idTareaEliminar = await listarTareas(listaTareas);
+        const response = await pausaEliminar();
+        if(response === "s"){
         tareas.eliminarTarea(idTareaEliminar);
+        }
     }
 
     guardarData(tareas.listaArr);
