@@ -1,0 +1,19 @@
+{
+  "name": "climaapp",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "colors": "^1.4.0",
+    "dotenv": "^16.0.1",
+    "inquirer": "^7.3.3"
+  }
+}
