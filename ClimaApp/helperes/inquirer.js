@@ -18,7 +18,7 @@ const preguntasMenu = [
       {
         value: 0,
         name: `${"0.-".green} Salir`,
-      }
+      },
     ],
   },
 ];
@@ -82,51 +82,51 @@ const opcionLugares = async (lugares) => {
 
   const { lugar } = await inquirer.prompt(preguntas);
 
-  const lugarSeleccionado = lugares.find((l)=> l.id === lugar);
+  const lugarSeleccionado = lugares.find((l) => l.id === lugar);
   return lugarSeleccionado;
 };
 
-const listarTareas = async(tareas) =>{
-    const preguntas = [
-        {
-          type: "checkbox",
-          name: "tarea",
-          message: "Escoja una tarea a eliminar",
-          choices: tareas.map((t) => {
-            const { descripcion, id } = t;
-            return {
-              value: id,
-              name: descripcion,
-            };
-          }),
-        },
-      ];
-    
-      const { tarea } = await inquirer.prompt(preguntas);
-      return tarea;
-}
-
-const preguntaEliminar = [
+const listarTareas = async (tareas) => {
+  const preguntas = [
     {
-      type: "input",
-      name: "response",
-      message: `Presione ${`[s]`.green} para continuar o ${`[n]`.green} para cancelar`,
-      validate(value) {
-        if (value === "s" || value === "n") {
-          return true
-        }
-        return "Por favor ingrese [s] o [n]";
-      },
+      type: "checkbox",
+      name: "tarea",
+      message: "Escoja una tarea a eliminar",
+      choices: tareas.map((t) => {
+        const { descripcion, id } = t;
+        return {
+          value: id,
+          name: descripcion,
+        };
+      }),
     },
   ];
-  
-  const pausaEliminar = async () => {
-    console.log("\n");
-   const {response} = await inquirer.prompt(preguntaEliminar);
-   return response;
-  };
 
+  const { tarea } = await inquirer.prompt(preguntas);
+  return tarea;
+};
 
+const preguntaEliminar = [
+  {
+    type: "input",
+    name: "response",
+    message: `Presione ${`[s]`.green} para continuar o ${
+      `[n]`.green
+    } para cancelar`,
+    validate(value) {
+      if (value === "s" || value === "n") {
+        return true;
+      }
+      return "Por favor ingrese [s] o [n]";
+    },
+  },
+];
+
+const pausaEliminar = async () => {
+  console.log("\n");
+  const { response } = await inquirer.prompt(preguntaEliminar);
+  return response;
+};
 
 module.exports = {
   inquiererMenu,
@@ -134,5 +134,5 @@ module.exports = {
   leerInput,
   opcionLugares,
   listarTareas,
-  pausaEliminar
+  pausaEliminar,
 };

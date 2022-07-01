@@ -7,7 +7,7 @@ class Busquedas {
   historial = [];
 
   constructor() {
-    this.historialBusquedas
+    this.historialBusquedas;
   }
 
   get paramsMapBox() {
@@ -70,9 +70,9 @@ class Busquedas {
   }
 
   get historialBusquedas() {
-    if(!fs.existsSync("./registro/data.json")){
+    if (!fs.existsSync("./registro/data.json")) {
       return [];
-    };
+    }
 
     const data = fs.readFileSync("./registro/data.json", { encoding: "utf-8" });
     const convert = JSON.parse(data);
@@ -82,12 +82,12 @@ class Busquedas {
 
   registroCiudades = (registro) => {
     const data = this.historialBusquedas;
-    
+
     if (data.length && data.includes(registro)) {
       return null;
     }
     this.historial.unshift(registro);
-    if(this.historial.length > 5){
+    if (this.historial.length > 5) {
       this.historial.pop();
     }
     fs.writeFileSync("./registro/data.json", JSON.stringify(this.historial));

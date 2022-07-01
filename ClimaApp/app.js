@@ -20,11 +20,11 @@ const main = async () => {
         const lugar = await leerInput();
         //Buscar los lugares
         const lugares = await busquedas.ciudad(lugar);
-        if(!lugares.length){
-          console.log("No se encontro la ciudad ingresada".red)
+        if (!lugares.length) {
+          console.log("No se encontro la ciudad ingresada".red);
           break;
         }
-  
+
         //Seleccionar lugar
         const { Ciudad, Longitud, Latitud } = await opcionLugares(lugares);
         busquedas.registroCiudades(Ciudad);
@@ -44,13 +44,12 @@ const main = async () => {
         console.log(`Descripcion: ${descripcion}`);
         break;
       case 2:
-        if(busquedas.historialBusquedas){
-          busquedas.historialBusquedas.map((c,i)=>{
-            console.log(`${i+1}`.green, `${c}`);
-          })
-          break;
+        if (busquedas.historialBusquedas) {
+          busquedas.historialBusquedas.map((c, i) => {
+            console.log(`${i + 1}`.green, `${c}`);
+          });
         }
-       break;
+        break;
     }
     await pausa();
   } while (opt !== 0);
