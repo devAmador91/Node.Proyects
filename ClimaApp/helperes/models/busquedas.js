@@ -17,7 +17,7 @@ class Busquedas {
       language: "es",
     };
   }
-  //busqueda
+  //busqueda de ciudades
   async ciudad(lugar = "") {
     try {
       const instancia = axios.create({
